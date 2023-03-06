@@ -1,19 +1,86 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}HEADER FOOTER{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>☀️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html
+	lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+		{# <!DOCTYPE html>
+				<html>
+				<head>
+				<meta charset="UTF-8"> #}
+		<title>
+			{% block title %}🌸Atelier Pauline🌸{% endblock %}
+		</title>
+		<link rel="icon" href="{{asset('uploads/logo.png')}}">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/lux/bootstrap.min.css">
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarColor01">
+					<ul class="navbar-nav me-auto">
+
+						<li class="nav-item">
+							<a class="navtitle" href="{{path('home')}}">ACCUEIL</a>
+						</li>
+						<li class="nav-item">
+							<a class="navtitle" href="{{path('app_register')}}">CREATION COMPTE</a>
+						</li>
+
+						{# LISTE DEROULANTE CRUD#}
+						{% if is_granted ('ROLE_ADMIN') %}
+							<li class="nav-item">
+								<div class="dropdown">
+									<span class="navtitle">REGLAGES</span>
+									<div class="dropdown-content">
+										<a class="subCategory" href="{{path('app_user_index')}}">UTILISATEURS</a>
+									</div>
+								</div>
+							</li>
+						{% endif %}
+
+						{# CONNEXION DECONNEXION CREER SON COMPTE #}
+						<li class="nav-item">
+							{% if is_granted ('ROLE_USER') %}
+						
+								<div class="dropdown">
+										<a class="navtitle" href="{{path('app_user_index')}}"> {{app.user.firstname}}</a>
+									<div class="dropdown-content">
+										<a class="subCategory" href="{{path('utilisateur', {id:app.user.id})}}">UTILISATEUR</a>
+										<a class="subCategory" href="{{path('app_logout')}}">DECONNEXION</a>
+									</div>
+								</div>
+
+
+						</li>
+
+						{% else %}
+							<a class="navtitle" href={{path('app_login')}}>COMPTE</a>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		{% block body %}{% endblock %}
+
+		
+</html></div></footer></body></html>

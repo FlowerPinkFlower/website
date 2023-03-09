@@ -1,0 +1,32 @@
+{# VERSION TABLEAU #}
+{% extends 'base.html.twig' %}
+
+{% block title %}INFORMATION PERSONNELLE{% endblock %}
+
+{% block body %}
+
+<h1>Informations personnelles</h1>
+
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Nom</th>
+                    <th class="text-center" scope="col">Prénom</th>
+                    <th class="text-center" scope="col">Date de naissance</th>
+                    <th class="text-center" scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center" scope="col">{{user.lastname}}</td>
+                    <td class="text-center" scope="col">{{user.firstname}}</td>
+                    <td class="text-center" scope="col">{{user.birthdate | date('d-m-Y')}}</td>
+                    <td class="text-center" scope="col">{{user.email}}</td>
+                    <td><a href="{{path('app_user_edit', {'id':user.id} )}}" class="buy-now">Modifier</a></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

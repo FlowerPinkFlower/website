@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -76,33 +77,67 @@ class UserController extends AbstractController
         }
     }
 
+    // MODIFIER UN UTILISATEUR
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {
-        try {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN');
-    
+       
             $form = $this->createForm(UserType::class, $user);
             $form->handleRequest($request);
-    
+
             if ($form->isSubmitted() && $form->isValid()) {
-                $userRepository->add($user);
+                $entityManager->persist($user);
+                $entityManager->flush();
                 return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
             }
-    
+
             return $this->renderForm('user/edit.html.twig', [
                 'user' => $user,
                 'form' => $form
             ]);
-        } catch (AccessDeniedException $ex) {
-            return $this->redirectToRoute('home');
-        }
     }
+
+    // public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    // {
+    //     try {
+    //         $this->denyAccessUnlessGranted('ROLE_ADMIN');
     
-
-
+    //         $form = $this->createForm(UserType::class, $user);
+    //         $form->handleRequest($request);
     
+    //         if ($form->isSubmitted() && $form->isValid()) {
+    //             $userRepository->add($user);
+    //             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    //         }
+    
+    //         return $this->renderForm('user/edit.html.twig', [
+    //             'user' => $user,
+    //             'form' => $form
+    //         ]);
+    //     } catch (AccessDeniedException $ex) {
+    //         return $this->redirectToRoute('home');
+    //     }
+    // }
 
+    /**
+     * @Route("/utilisateur/{id}", name="utilisateur", methods={"GET"})
+     */
+
+
+
+
+
+    public function utilisateur(User $user): Response
+    {
+        
+            return $this->render('user/test.html.twig', [
+                'user' => $user
+            ]);
+            return $this->redirectToRoute('home');
+        
+    }
+
+    // SUPPRIMER UTILISATEUR
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
@@ -119,4 +154,58 @@ class UserController extends AbstractController
             return $this->redirectToRoute('home');
         }
     }
+
+
+
+    // RESTRICTION SUR LUTILISATEUR. UNE PERSONNE NE PEUT PAS AVOIR LE MEME NOM,PRENOM ET EMAIL
+    // public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, ValidatorInterface $validator)
+    // {
+    //     // Créer une nouvelle instance d'utilisateur à partir des données du formulaire
+    //     $user = new User();
+    //     $form = $this->createForm(UserType::class, $user);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         // Vérifier si un utilisateur existe déjà avec les mêmes informations
+    //         $existingUser = $this->getDoctrine()->getRepository(User::class)->findOneBy([
+    //             'email' => $user->getEmail(),
+    //             'firstname' => $user->getFirstname(),
+    //             'lastname' => $user->getLastname(),
+    //         ]);
+
+    //         if ($existingUser !== null) {
+    //             $errorMessage = 'Un utilisateur avec ces informations existe déjà.';
+    //             // Ajouter une erreur de validation pour empêcher l'enregistrement de l'utilisateur
+    //             $validator->context->buildViolation($errorMessage)
+    //                 ->atPath('email')
+    //                 ->addViolation();
+    //             $validator->context->buildViolation($errorMessage)
+    //                 ->atPath('firstname')
+    //                 ->addViolation();
+    //             $validator->context->buildViolation($errorMessage)
+    //                 ->atPath('lastname')
+    //                 ->addViolation();
+
+    //             return $this->redirectToRoute('register');
+    //         }
+
+    //         // Encoder le mot de passe de l'utilisateur
+    //         $user->setPassword(
+    //             $passwordEncoder->encodePassword($user, $user->getPassword())
+    //         );
+
+    //         // Enregistrer l'utilisateur dans la base de données
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->persist($user);
+    //         $entityManager->flush();
+
+    //         // Rediriger l'utilisateur vers la page de connexion
+    //         return $this->redirectToRoute('app_login');
+    //     }
+
+    //     // Afficher le formulaire de création de compte
+    //     return $this->render('registration/register.html.twig', [
+    //         'registrationForm' => $form->createView(),
+    //     ]);
+    // }
 }

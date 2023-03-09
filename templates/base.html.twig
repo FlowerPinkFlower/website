@@ -53,17 +53,18 @@
 									</div>
 								</div>
 							</li>
+								{% else %}
+								{# <a class="subCategory" href="{{path('utilisateur', {id:app.user.id})}}">UTILISATEUR</a> #}
+
 						{% endif %}
 
 						{# CONNEXION DECONNEXION CREER SON COMPTE #}
 						<li class="nav-item">
 							{% if is_granted ('ROLE_USER') %}
-
 								<div class="dropdown">
-									<a class="navtitle" href="{{path('app_user_index')}}">
-										{{app.user.firstname}}</a>
+									{# <a class="subCategory" href="{{path('app_user_index')}}"> {{app.user.firstname}}</a> #}
 									<div class="dropdown-content">
-										{# <a class="subCategory" href="{{path('utilisateur', {id:app.user.id})}}">UTILISATEUR</a> #}
+										<a class="subCategory" href="{{path('utilisateur', {id:app.user.id})}}">{{app.user.firstname}}</a>
 										<a class="subCategory" href="{{path('app_logout')}}">DECONNEXION</a>
 									</div>
 								</div>

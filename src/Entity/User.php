@@ -23,6 +23,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    #[ORM\Column]
+    private ?string $firstname = null;
+
+    #[ORM\Column]
+    private ?string $lastname = null;
+
     /**
      * @var string The hashed password
      */
@@ -45,6 +51,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    // public function getFirstname(): ?string
+    // {
+    //     return $this->firstname;
+    // }
+
+    // public function setFirstname(string $firstname): self
+    // {
+    //     $this->firstname = $firstname;
+
+    //     return $this;
+    // }
+
+    // public function getLastname(): ?string
+    // {
+    //     return $this->lastname;
+    // }
+
+    // public function setLastname(string $lastname): self
+    // {
+    //     $this->lastname = $lastname;
+
+    //     return $this;
+    // }
 
     /**
      * A visual identifier that represents this user.

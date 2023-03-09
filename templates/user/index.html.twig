@@ -1,9 +1,49 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Informations utilisateurs{% endblock %}
 
 {% block body %}
     <h1>Informations utilisateur</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">Email</th>
+                <th class="text-center">Roles</th>
+                <th class="text-center">Prénom</th>
+                <th class="text-center">Nom</th>
+                <th class="text-center">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for user in users %}
+            <tr>
+                <td class="text-center">{{ user.email }}</td>
+                <td class="text-center">{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td class="text-center">{{ user.firstname }}</td>
+                <td class="text-center">{{ user.lastname }}</td>
+                <td><a class="text-center, buy-now" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a></td>
+                <td><a class="text-center, buy-now" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a></td>
+                <td><a class="text-center, buy-now" href="{{ path('app_user_delete', {'id': user.id}) }}">Supprimer</a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
+{% endblock %} #}
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Index Utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Index utilisateurs</h1>
 
     <table class="table">
         <thead>
@@ -18,7 +58,7 @@
             </tr>
         </thead>
         <tbody>
-         {% for user in users %}
+        {% for user in users %}
             <tr>
                 {# <td>{{ user.id }}</td> #}
                 <td class="text-center">{{ user.email }}</td>
@@ -38,5 +78,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
+    <a class="buy-now" href="{{ path('app_user_new') }}">Créer un nouveau utilisateur</a></br></br></br></br>
 {% endblock %}

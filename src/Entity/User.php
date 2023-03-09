@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\User;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,6 +29,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?string $lastname = null;
+
+    #[ORM\Column(type: "date", nullable: true)]
+    private ?DateTimeInterface $birthdate = null;
+
 
     /**
      * @var string The hashed password
@@ -76,6 +80,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getBirthdate(): ?\DateTimeInterface
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(?\DateTimeInterface $birthdate): self
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+    
 
     /**
      * A visual identifier that represents this user.

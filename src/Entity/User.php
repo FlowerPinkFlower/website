@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -52,29 +53,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // public function getFirstname(): ?string
-    // {
-    //     return $this->firstname;
-    // }
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
 
-    // public function setFirstname(string $firstname): self
-    // {
-    //     $this->firstname = $firstname;
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
-    // public function getLastname(): ?string
-    // {
-    //     return $this->lastname;
-    // }
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
 
-    // public function setLastname(string $lastname): self
-    // {
-    //     $this->lastname = $lastname;
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     /**
      * A visual identifier that represents this user.

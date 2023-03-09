@@ -45,8 +45,8 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             
-            //  ->add('firstname', TextType::class) //ajouter des champs comme le prenom sinon l'utilisateur n'aura par défaut que le MDP
-            //  ->add('lastname', TextType::class) //ajouter des champs comme le nom
+             ->add('firstname', TextType::class) //ajouter des champs comme le prenom sinon l'utilisateur n'aura par défaut que le MDP
+             ->add('lastname', TextType::class) //ajouter des champs comme le nom
         ;
     }
 

@@ -21,10 +21,11 @@ class UserType extends AbstractType
         'multiple'=>true,
         'label'=>"Roles"
         ])
-        
+        ->add('id')
         ->add('email')
         ->add('firstname')
         ->add('lastname')
+        ->add('birthdate')
         ->add('password')
         
         ;

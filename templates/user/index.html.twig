@@ -48,24 +48,26 @@
     <table class="table">
         <thead>
             <tr>
-                {# <th>Id</th> #}
+                <th>Id</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Roles</th>
                 {# <th class="text-center">Mot de passe</th> #}
                 <th class="text-center">Prénom</th>
                 <th class="text-center">Nom</th>
+                <th class="text-center">Date de naissance</th>
                 <th class="text-center">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-                {# <td>{{ user.id }}</td> #}
+                <td>{{ user.id }}</td>
                 <td class="text-center">{{ user.email }}</td>
                 <td class="text-center">{{ user.roles ? user.roles|json_encode : '' }}</td>
                 {# <td class="text-center">{{ user.password }}</td> #}
                 <td class="text-center">{{ user.firstname }}</td>
                 <td class="text-center">{{ user.lastname }}</td>
+                <td class="text-center">{{ user.birthdate|date('Y-m-d') }}</td>
                 <td><a class="text-center, buy-now" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a></td>
                 <td><a class="text-center, buy-now" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a></td>
                 <td><a class="text-center, buy-now" href="{{ path('app_user_delete', {'id': user.id}) }}">Supprimer</a></td>

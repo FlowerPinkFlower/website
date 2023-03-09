@@ -12,6 +12,18 @@
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+             <tr>
+                <th>Date de naissance</th>
+                <td>{{ user.birthdate|date('Y-m-d') }}</td>
+            </tr>
+            <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>

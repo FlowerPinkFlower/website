@@ -11,8 +11,8 @@
 						<head>
 						<meta charset="UTF-8"> #}
 		<title>
-			{% block title %}🌸Atelier Pauline🌸
-			{% endblock %}
+			{# {% block title %}🌸Atelier Pauline🌸
+			{% endblock %} #}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
@@ -64,7 +64,7 @@
 								<div class="dropdown">
 									{# <a class="subCategory" href="{{path('app_user_index')}}"> {{app.user.firstname}}</a> #}
 									<div class="dropdown-content">
-										<a class="subCategory" href="{{path('utilisateur', {id:app.user.id})}}">{{app.user.firstname}}</a>
+										{# <a class="subCategory" href="{{path('utilisateur', {id:app.user.id})}}">{{app.user.firstname}}</a> #}
 										<a class="subCategory" href="{{path('app_logout')}}">DECONNEXION</a>
 									</div>
 								</div>
@@ -75,11 +75,7 @@
 						{% endif %}
 					</ul>
 
-					{# BARRE DE RECHERCHE #}
-					<form class="d-flex">
-						<input class="form-control me-sm-2" type="text" placeholder="Search">
-						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-					</form>
+					
 				</div>
 			</div>
 		</nav>

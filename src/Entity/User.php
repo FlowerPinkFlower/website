@@ -9,6 +9,8 @@ use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'email déjà utilisé')]
@@ -24,6 +26,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    /**
+     * @Assert\Regex(
+     *     pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/",
+     *     message="regex n'ont respecté"
+     * )
+     */  
     private ?string $email = null;
 
     #[ORM\Column]
@@ -43,6 +51,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+        /**
+     * @Assert\Regex(
+     *     pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?!.*\s).{6,}$/",
+     *     message="Le mot de passe doit contenir au moins une majuscule, un chiffre, un caractère spécial et 6 caractères minimum."
+     * )
+     */ 
+
     private ?string $password = null;
 
     public function getId(): ?int

@@ -25,8 +25,6 @@ class HomeController extends AbstractController
     }
 
 
-
-
      /**
      * @Route("/erreur", name="erreur")
      */

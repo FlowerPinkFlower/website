@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier utilisateur{% endblock %}
+{% block title %}Modification utilisateur{% endblock %}
 
 {% block body %}
     <h1>Modifier utilisateur</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_user_index') }}">Revenir à la liste</a>
+    {# {{ include('user/_delete_form.html.twig') }}</br></br> #}
+    {{ include('user/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+    
+    <form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
 
-    {{ include('user/_delete_form.html.twig') }}
+
+        <a class="buy-now" href="{{ path('app_user_index') }}">Revenir à la liste</a>
+
+        <button class="suppression-button"><a class="text-center, buy-now" >Supprimer</a></button>
+        
+    </form>
 {% endblock %}
+

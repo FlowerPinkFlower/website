@@ -8,14 +8,15 @@
 
 	{# BARRE DE RECHERCHE #}
 	{# <form class="d-flex"> #}
-     <form method="get" action="{{ path('app_user_index') }}">
+	<form
+		method="get" action="{{ path('app_user_index') }}">
 		{# <input class="form-control me-sm-2" type="text" placeholder="Search">
-		<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> #}
+						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> #}
 
-        <div class="input-group mb-3">
-            <input type="text" name="q" class="form-control me-sm-2" placeholder="Rechercher un utilisateur" aria-label="Rechercher un utilisateur" aria-describedby="button-addon2" value="{{ app.request.get('q') }}">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit" id="button-addon2">Rechercher</button>
-        </div>
+		<div class="input-group mb-3">
+			<input type="text" name="q" class="form-control me-sm-2" placeholder="Rechercher un utilisateur" aria-label="Rechercher un utilisateur" aria-describedby="button-addon2" value="{{ app.request.get('q') }}">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit" id="button-addon2">Rechercher</button>
+		</div>
 	</form>
 
 
@@ -47,17 +48,20 @@
 					<td>
 						<a class="text-center, buy-now" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
 					</td>
-					<td>
-						<a class="text-center, buy-now" href="{{ path('app_user_delete', {'id': user.id}) }}">Supprimer</a>
-					</td>
+						<form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+							<td>
+								<button class="suppression-button"><a class="text-center, buy-now" >Supprimer</a></button>
+							</td>
+						</form>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="5">no records found</td>
+					<td colspan="5">aucun résultat</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a class="buy-now" href="{{ path('app_user_new') }}">Créer un nouveau utilisateur</a>
+	<a class="text-center, buy-now" href="{{ path('app_user_new') }}">Créer un nouveau utilisateur</a>
 </br></br></br></br>{% endblock %}

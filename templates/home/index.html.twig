@@ -1,17 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}🍊ACCUEIL🍊{% endblock %}
+{% block title %}Atelier Pauline{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    {# <h1>Hello {{ controller_name }}! ✅</h1> #}
-    <h1>🍊ACCUEIL🍊</h1>
+ <!-- Mise en page de la barre de navigation et sur téléphone -->
+   <section class="header">
+        <div class="text-box">
+            <h1>Espoir & Camille</h1>
+            <p>Nous nous devons de partager l’histoire de nos bijoux de l’idée originelle à la production. 
+                <br> Cet exercice de transparence vous permettra de découvrir toutes les étapes qui rendent nos bijoux si originaux.
+                </p>
+            <p href="#" class="hero-btn">Venez découvrir notre marque</p>
+        </div>
+    </section>
 
-    
+    <div class="course">
+        <h5>Plongez au ❤️ de l’effervescence de notre cheminement créatif</h5><br><br><br>
+            
+            
+		<ul class="accueilMention">
+			<li>
+				<a>Bijoux fait main</a>
+                <a><img class="stickeraccueil" src="{{asset('uploads/diy.png')}}" alt="Bijoux fait Main"></a>
+			</li>
+			<li>
+				<a>A partir de 15€</a>
+                <a><img class="stickeraccueil" src="{{asset('uploads/tirelire.png')}}" alt="A partir de 15€"></a>
+			</li>
+			<li>
+				<a>Made in France</a>
+                <a><img class="stickeraccueil" src="{{asset('uploads/madeinFrance.png')}}" alt="Made in France"></a>
+			</li>
+		</ul>
+            
+            <h3>CATEGORIE</h3>
+            <p>Choisir un bijou n'est pas toujours facile. Voici les différentes catégories de nos produits pour vous aidez dans votre choix.</p>
+        
+
+
+
+
+            <section class="accueilindex">
+                <a class="messages"><img class="accueilImage" src="{{asset('uploads/louyetu_earings.png')}}" alt="boucles d'oreilles"></a>
+                
+                <a class="messages"><img class="accueilImage" src="{{asset('uploads/louyetu_bracelet.png')}}" alt="bracelets"></a>
+                
+                <a class="messages"><img class="accueilImage" src="{{asset('uploads/louyetu_collier.png')}}" alt="colliers"></a>   
+            </section>
+
+<section class="accueilindex">
+        <h3>ON DIT QUE NOS BIJOUX SONT FAITS MAIN MAIS 
+            EN RÉALITÉ ILS SONT FABRIQUÉS AVEC DU ❤️.</h3>
+
+            <p>Convaincu qu’il n’existe pas de compromis entre la 
+                joaillerie et la fantaisie, ATELIER PAULINE ROUSSEAU propose un nouveau 
+                style de bijouterie. Des bijoux fétiches du quotidien: 
+                assemblés ou dessinés, soudés et empierrés, texturés 
+                et dorés, ajustés puis controlés, tous sont conçus pour 
+                durer. Nous sommes fiers de la qualité de nos bijoux.
+
+                Cet exercice de transparence vous permettra de découvrir toutes les 
+                étapes qui rendent nos bijoux si originaux.</p>
+                <br/>
+                </section>
 </div>
+
+
 {% endblock %}

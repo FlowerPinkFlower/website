@@ -35,13 +35,10 @@ class UserController extends AbstractController
     {
         try {
             $this->denyAccessUnlessGranted('ROLE_ADMIN');
-    
+
             $query = $request->query->get('q');
-            if ($query !== null) {
-                $users = $userRepository->search($query);
-            }
-                $users = $userRepository->findBy([], ['lastname' => 'ASC', 'firstname' => 'ASC']);
-    
+            $users = $userRepository->search($query);
+
             return $this->render('user/index.html.twig', [
                 'users' => $users,
                 'query' => $query
@@ -50,6 +47,43 @@ class UserController extends AbstractController
             return $this->redirectToRoute('home');
         }
     }
+
+        /**
+     * @Route("/utilisateur/{id}", name="utilisateur", methods={"GET"})
+     */
+    public function utilisateur(User $user): Response
+    {
+        
+            return $this->render('user/test.html.twig', [
+                'user' => $user
+                
+            ]);
+            return $this->redirectToRoute('home');
+        
+    }
+
+
+    // public function index(UserRepository $userRepository, Request $request): Response
+    // {
+    //     try {
+    //         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+    
+    //         $query = $request->query->get('q');
+    //         if ($query !== null) {
+    //             $users = $userRepository->search($query);
+    //         }else{
+    //             $users = $userRepository->findBy([], ['lastname' => 'ASC', 'firstname' => 'ASC']);
+
+    //         }
+    
+    //         return $this->render('user/index.html.twig', [
+    //             'users' => $users,
+    //             'query' => $query
+    //         ]);
+    //     } catch (AccessDeniedException $ex) {
+    //         return $this->redirectToRoute('home');
+    //     }
+    // }
 
 
     // #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
@@ -119,9 +153,6 @@ class UserController extends AbstractController
     }
 
 
-
-
-
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
@@ -156,5 +187,5 @@ class UserController extends AbstractController
         catch (AccessDeniedException $ex) {
             return $this->redirectToRoute('home');
         }
-}
+    }
 }

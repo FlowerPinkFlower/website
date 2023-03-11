@@ -57,22 +57,41 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
 
-    public function search(string $query)
+    // public function search(string $query)
+    // {
+    //     $qb = $this->createQueryBuilder('u');
+
+    //     if ($query) {
+    //         $qb->where($qb->expr()->orX(
+    //             $qb->expr()->like('u.firstname', ':query'),
+    //             $qb->expr()->like('u.lastname', ':query'),
+    //             $qb->expr()->like('u.email', ':query')
+    //         ))
+    //         ->setParameter('query', "%$query%");
+    //     }
+
+    //     return $qb->getQuery()->getResult();
+    // }
+    public function search(?string $query)
     {
         $qb = $this->createQueryBuilder('u');
-
-        if ($query) {
+    
+        if ($query !== null && !empty($query)) {
             $qb->where($qb->expr()->orX(
                 $qb->expr()->like('u.firstname', ':query'),
-                $qb->expr()->like('u.lastname', ':query'),
-                $qb->expr()->like('u.email', ':query')
+                $qb->expr()->like('u.lastname', ':query')
             ))
+            ->orderBy('u.lastname', 'ASC')
+            ->addOrderBy('u.firstname', 'ASC')
             ->setParameter('query', "%$query%");
+        } else {
+            $qb->orderBy('u.lastname', 'ASC')
+            ->addOrderBy('u.firstname', 'ASC');
         }
-
+    
         return $qb->getQuery()->getResult();
     }
-
+    
     
 
 //    /**

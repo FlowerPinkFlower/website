@@ -1,17 +1,4 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Nouvel utilisateur{% endblock %}
-
-{% block body %}
-    <h1>Créer un nouvel utilisateur</h1>
-
-    {{ include('user/_form.html.twig') }}
-
-    <a class="buy-now" href="{{ path('app_user_index') }}">Retourner à la liste</a>
-{% endblock %}
-
-{# 
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Nouvel utilisateur{% endblock %}
 
@@ -22,3 +9,16 @@
 
     <a class="buy-now" href="{{ path('app_user_index') }}">Retourner à la liste</a>
 {% endblock %} #}
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouvel utilisateur</h1>
+
+    {{ include('user/_form.html.twig') }}
+
+    <a class="#" href="{{ path('app_user_index') }}">Retourner à la liste</a>
+{% endblock %}

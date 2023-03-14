@@ -11,7 +11,7 @@
 {% endblock %} #}
 
 
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Nouvel utilisateur{% endblock %}
 
@@ -21,4 +21,50 @@
     {{ include('user/_form.html.twig') }}
 
     <a class="#" href="{{ path('app_user_index') }}">Retourner à la liste</a>
+{% endblock %} #}
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel utilisateur
+{% endblock %}
+
+
+{% block body %}
+	{{ form_start(form) }}
+	<section class="connection">
+		<div
+			class="container">
+
+			<form method="post">
+
+				<br/>
+				<h1 class="title_connexion">Nouvel utilisateur</h1>
+				<br/>
+				{{ form_widget(form._token) }}
+
+				{{ form_label(form.firstname) }}
+				{{ form_widget(form.firstname, {'attr': {'class': 'form-control', 'autofocus': 'autofocus'}}) }}
+
+				{{ form_label(form.lastname) }}
+				{{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+
+				{{ form_label(form.email) }}
+				{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+
+				{{ form_label(form.birthdate) }}
+				{{ form_widget(form.birthdate, {'attr': {'class': 'form-control'}}) }}
+
+				{{ form_label(form.password) }}
+				{{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                <div style="text-align: center;">
+					</br>
+                {{ include('user/_form.html.twig') }}
+				<a class="buy-now" href="{{ path('app_user_index') }}">Revenir à la liste</a>
+				</div>
+			</form>
+			{{ form_end(form) }}
+		</div>
+	</section>
+
 {% endblock %}

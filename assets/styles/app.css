@@ -12,6 +12,7 @@ a {
 
 body {
   font-size: 12px;
+
 }
 
 
@@ -415,33 +416,37 @@ section .container .user .formBx {
   top: 40px; left: 40px;
 } */
 
-footer{
+/* footer{
   background-color: #84ADEA;
   padding:20px 0px 0px 0px;
   width: 100%;
-  position: static;
   bottom: 0;
   left: 0;
+  width: 100%;
   text-align: center;
 }
- 
-.mentions{
+  */
+/* .mentions{
+  position:fixed;
   display:flex;
   justify-content:space-around;
   align-content: space-around;
-  list-style:none;
+  list-style: none;
+  text-decoration: none;
+} */
+article {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
-/* .socials{
-  display:flex;
-  justify-content:center;
-  list-style:none;
-} */
-
-/* .socials li{
-  width:30px;
-  margin: 10px;
-}  */
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px 0px 0px;
+  background-color: #84ADEA;
+  color: #fff;
+}
 
 
 /*========================================*/

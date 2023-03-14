@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Utilisateur
+{# {% block title %}Utilisateur
 {% endblock %}
 
 {% block body %}
+
 	<h1>Utilisateur</h1>
 
 	<table class="table">
@@ -55,52 +56,109 @@
 	</form>
 
 
-	{# {{ include('user/_delete_form.html.twig') }} #}
+	{{ include('user/_delete_form.html.twig') }}
+{% endblock %} #}
 
-
-{% endblock %}
-
-{# 
-
-{% extends 'base.html.twig' %}
-
-{% block title %}Utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Utilisateur</h1>
+	<section class="connection">
+		<div class="container">
+			<form method="post">
+				<br/>
+				<h1 class="title_connexion">Information Utilisateur</h1>
+				<br/>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Mot de passe</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ user.lastname }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a class="buy-now" href="{{ path('app_user_index') }}">Revenir à la liste</a></br>
+				<div
+					class="form-floating mb-3">
+					<input type="text" name="id" id="id" class="form-control" placeholder="Id" readonly>
+					<label for="id">{{user.id}}</label>
+				</div>
 
-   </br></br> <a class="buy-now" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a></br></br>
+				<div
+					class="form-floating mb-3">
+					<input type="text" name="prenom" id="prenom" class="form-control" placeholder="Prénom" readonly>
+					<label for="prenom">{{user.lastname}}</label>
+				</div>
+				<div
+					class="form-floating mb-3">
+					<input type="text" name="nom" id="nom" class="form-control" placeholder="nom" readonly>
+					<label for="nom">{{user.firstname}}</label>
+				</div>
+				<div
+					class="form-floating mb-3">
+					<input type="email" name="email" id="inputEmail" class="form-control" placeholder="email" readonly>
+					<label for="date_naissance">{{user.email}}</label>
+				</div>
+				<div class="form-floating mb">
+					<input type="text" class="form-control" id="staticEmail" placeholder="date" readonly>
+					<label for="date_naissance">{{user.birthdate | date('d-m-Y')}}</label>
+				</div>
 
-    {{ include('user/_delete_form.html.twig') }}
-{% endblock %} #}
+				<div style="text-align: center;"></br>
+
+				<form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">
+
+					<a class="text-center, buy-now" href="{{ path('app_user_index') }}">Revenir à la liste</a>
+
+					<a class="text-center, buy-now" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+
+
+					<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+					<td>
+						<button class="suppression-button">
+							<a class="text-center, buy-now">Supprimer</a>
+						</button>
+					</td>
+				</form>
+
+
+			</div>
+
+
+		</form>
+	</div>
+</section>{% endblock %}{# 
+	
+	{% extends 'base.html.twig' %}
+	
+	{% block title %}Utilisateur{% endblock %}
+	
+	{% block body %}
+	    <h1>Utilisateur</h1>
+	
+	    <table class="table">
+	        <tbody>
+	            <tr>
+	                <th>Id</th>
+	                <td>{{ user.id }}</td>
+	            </tr>
+	            <tr>
+	                <th>Email</th>
+	                <td>{{ user.email }}</td>
+	            </tr>
+	            <tr>
+	                <th>Roles</th>
+	                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+	            </tr>
+	            <tr>
+	                <th>Mot de passe</th>
+	                <td>{{ user.password }}</td>
+	            </tr>
+	            <tr>
+	                <th>Prénom</th>
+	                <td>{{ user.firstname }}</td>
+	            </tr>
+	            <tr>
+	                <th>Nom</th>
+	                <td>{{ user.lastname }}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	
+	    <a class="buy-now" href="{{ path('app_user_index') }}">Revenir à la liste</a></br>
+	
+	   </br></br> <a class="buy-now" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a></br></br>
+	
+	    {{ include('user/_delete_form.html.twig') }}
+	{% endblock %} #}

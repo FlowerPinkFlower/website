@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}INFORMATION PERSONNELLE{% endblock %}
+{% block title %}INFORMATION PERSONNELLE
+{% endblock %}
 
-{% block body %}
+{# {% block body %}
 
 <h1>Information personnelle</h1>
 
@@ -27,4 +28,39 @@
             </tbody>
         </table>
     </div>
+{% endblock %} #}
+
+
+{% block body %}
+	<section class="connection">
+		<div class="container">
+			<form method="post">
+				<br/>
+				<h1 class="title_connexion">Informations personnelles</h1>
+				<br/>
+
+
+				<div class="form-floating mb-3">
+					<input type="text" name="prenom" id="prenom" class="form-control" placeholder="Prénom" readonly>
+					<label for="prenom">{{user.lastname}}</label>
+				</div>
+				<div class="form-floating mb-3">
+					<input type="text" name="nom" id="nom" class="form-control" placeholder="nom" readonly>
+					<label for="nom">{{user.firstname}}</label>
+				</div>
+				<div class="form-floating mb-3">
+					<input type="email" name="email" id="inputEmail" class="form-control" placeholder="email" readonly>
+					<label for="date_naissance">{{user.email}}</label>
+				</div>
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="staticEmail" placeholder="date" readonly>
+					<label for="date_naissance">{{user.birthdate | date('d-m-Y')}}</label>
+				</div>
+				<div style="text-align: center;">
+					</br><a class="buy-now" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+				</div>
+			</form>
+
+		</div>
+	</section>
 {% endblock %}

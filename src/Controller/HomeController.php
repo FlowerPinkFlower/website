@@ -28,8 +28,17 @@ class HomeController extends AbstractController
      /**
      * @Route("/erreur", name="erreur")
      */
-    public function erreur(SubCategoryRepository $subCateRepo, CategoryRepository $cateRepo): Response
+    public function erreur(): Response
     {
         return $this->render('home/erreur.html.twig');
+    }
+
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact(): Response
+    {
+        return $this->render('home/contact.html.twig');
     }
 }

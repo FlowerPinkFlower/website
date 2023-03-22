@@ -1,4 +1,4 @@
-{# {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Modification utilisateur{% endblock %}
 
@@ -17,10 +17,10 @@
         <button class="suppression-button"><a class="text-center, buy-now" >Supprimer</a></button>
         
     </form>
-{% endblock %} #}
+{% endblock %}
 
 
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 
 {# {% block title %}Modifier mes informations
 {% endblock %}
@@ -117,7 +117,7 @@
 {% endblock %}#}
 
 
-{% block title %}Modification utilisateur
+{# {% block title %}Modification utilisateur
 {% endblock %} 
 
 
@@ -149,6 +149,8 @@
                
                 <div style="text-align: center;">
                     </br>
+									   </br></br> <a class="buy-now" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a></br></br>
+
                     {{ include('user/_form.html.twig') }}
                     <a class="buy-now" href="{{ path('app_user_index') }}">Revenir à la liste</a>
                 </div>
@@ -158,7 +160,7 @@
 		</div>
 	</section>
 
-{% endblock %}
+{% endblock %} #}
 
 
 

@@ -5,8 +5,10 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class UserType extends AbstractType
 {
@@ -25,7 +27,26 @@ class UserType extends AbstractType
         ->add('email')
         ->add('firstname')
         ->add('lastname')
-        ->add('birthdate')
+        // ->add('birthdate')
+
+        ->add('birthdate', BirthdayType::class, [
+            'label' => 'Date de naissance',
+            'widget' => 'single_text',
+            'format' => 'dd-MM-yyyy',
+            'html5' => false,
+            'attr' => [
+                'class' => 'datepicker',
+                'autocomplete' => 'off',
+            ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Veuillez renseigner votre date de naissance',
+                ]),
+            ],
+        ])
+
+
+
         ->add('password')
         
         ;

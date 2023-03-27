@@ -6,7 +6,7 @@
     <h1>Modifier utilisateur</h1>
 
 
-    {{ include('user/_delete_form.html.twig') }}</br></br>
+    {# {{ include('user/_delete_form.html.twig') }}</br></br> #}
     {{ include('user/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
     
     <form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">

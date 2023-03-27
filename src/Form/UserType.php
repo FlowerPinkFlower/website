@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class UserType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -24,14 +25,20 @@ class UserType extends AbstractType
         'label'=>"Roles"
         ])
         // ->add('id')
-        ->add('email')
-        ->add('firstname')
-        ->add('lastname')
-        // ->add('birthdate')
-
-        ->add('birthdate', BirthdayType::class, [
-            'label' => 'Date de naissance',
-            'widget' => 'single_text',
+        ->add('email', null, [
+            'label' => 'Email'
+            ])
+            ->add('firstname', null, [
+                'label' => 'Prénom'
+        ])
+        ->add('lastname', null, [
+            'label' => 'Nom'
+            ])
+            // ->add('birthdate')
+            
+            ->add('birthdate', BirthdayType::class, [
+                'label' => 'Date de naissance',
+                'widget' => 'single_text',
             'format' => 'dd-MM-yyyy',
             'html5' => false,
             'attr' => [
@@ -44,14 +51,16 @@ class UserType extends AbstractType
                 ]),
             ],
         ])
-
-
-
-        ->add('password')
+              
         
-        ;
-    }
 
+        ->add('password', null, [
+                'label' => 'Mot de passe'
+            ])
+        
+            ;
+        }
+        
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

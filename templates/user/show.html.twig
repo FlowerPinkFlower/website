@@ -68,28 +68,35 @@
 				<h1 class="title_connexion">Information Utilisateur</h1>
 				<br/>
 
-
+				<p>Id</p>
 				<div
 					class="form-floating mb-3">
 					<input type="text" name="id" id="id" class="form-control" placeholder="Id" readonly>
 					<label for="id">{{user.id}}</label>
 				</div>
 
+				<p>Prénom</p>
 				<div
 					class="form-floating mb-3">
 					<input type="text" name="prenom" id="prenom" class="form-control" placeholder="Prénom" readonly>
 					<label for="prenom">{{user.lastname}}</label>
 				</div>
+
+				<p>Nom</p>
 				<div
 					class="form-floating mb-3">
 					<input type="text" name="nom" id="nom" class="form-control" placeholder="nom" readonly>
 					<label for="nom">{{user.firstname}}</label>
 				</div>
+
+				<p>Email</p>
 				<div
 					class="form-floating mb-3">
 					<input type="email" name="email" id="inputEmail" class="form-control" placeholder="email" readonly>
 					<label for="date_naissance">{{user.email}}</label>
 				</div>
+				
+				<p>Date Anniversaire</p>
 				<div class="form-floating mb">
 					<input type="text" class="form-control" id="staticEmail" placeholder="date" readonly>
 					<label for="date_naissance">{{user.birthdate | date('d-m-Y')}}</label>
